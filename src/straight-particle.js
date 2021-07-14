@@ -10,13 +10,6 @@ export default class StraightParticle extends Particle {
         this.color;
     }
     update(deltaTime){
-        let yInt = Math.floor(this.y);
-        let xInt = Math.floor(this.x);
-        if (yInt >= 0 && yInt < Particle.maxHeight 
-            && xInt >= 0 && xInt < Particle.maxWidth){
-            this.speed = Particle.mappedImage[yInt][xInt][0];
-            this.color = Particle.mappedImage[yInt][xInt][1];
-        }
         this.y += (3 - this.speed) * deltaTime * 0.03 * Particle.verticalSpeed;
         this.x += (3 - this.speed) * deltaTime * 0.03 * Particle.horizontalSpeed;
         if (this.y >= Particle.maxHeight && Particle.verticalSpeed > 0){
@@ -34,6 +27,13 @@ export default class StraightParticle extends Particle {
         if (this.x < 0 && Particle.horizontalSpeed < 0){
             this.x = Particle.maxWidth - 1;
             this.y = Math.random() * Particle.maxHeight;
+        }
+        let yInt = Math.floor(this.y);
+        let xInt = Math.floor(this.x);
+        if (yInt >= 0 && yInt < Particle.maxHeight 
+            && xInt >= 0 && xInt < Particle.maxWidth){
+            this.speed = Particle.mappedImage[yInt][xInt][0];
+            this.color = Particle.mappedImage[yInt][xInt][1];
         }
     }
     draw(ctx){

@@ -15,7 +15,7 @@ export default class Pict2Pix {
         this.#canvas = document.createElement('canvas');
         this.#canvas.width = configPic2Pix.image.width || configPic2Pix.image.naturalWidth;
         this.#canvas.height = configPic2Pix.image.height || configPic2Pix.image.naturalHeight;
-        image.parentNode.replaceChild(this.#canvas, configPic2Pix.image);
+        configPic2Pix.image.replaceWith(this.#canvas);
         this.#ctx = this.#canvas.getContext('2d');
 
         this.#ctx.drawImage(configPic2Pix.image, 0, 0, this.#canvas.width, this.#canvas.height);

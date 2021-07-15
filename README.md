@@ -21,7 +21,7 @@ Pict2Pix.js is a library to add pixels animation to an image
     <div id="div1">
         <img id="image-jh" src="images/jimi-hendrix.jpg">
     </div>
-    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.1.1/dist/pict2pix.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.1.2/dist/pict2pix.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

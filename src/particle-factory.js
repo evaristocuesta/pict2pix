@@ -7,12 +7,12 @@ export default class ParticleFactory {
     constructor()
     {
         this.#particles = {
-            'straight-particle': (props) => new StraightParticle(),
-            'twisted-particle': (props) => new TwistedParticle()
+            'straight-particle': (config) => new StraightParticle(config),
+            'twisted-particle': (config) => new TwistedParticle(config)
         }
     }
 
-    createParticle(type, props) {
-        return this.#particles[type]?.(props) ?? new StraightParticle();
+    createParticle(config) {
+        return this.#particles[config.particleType]?.(config) ?? new StraightParticle();
     }
 }

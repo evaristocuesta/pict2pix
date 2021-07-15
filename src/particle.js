@@ -1,12 +1,8 @@
 export default class Particle {
-    static mappedImage;
-    static maxWidth;
-    static maxHeight;
-    static horizontalSpeed;
-    static verticalSpeed;
+    config;
     
-    constructor(){
-
+    constructor(config){
+        this.config = config;
     }
 
     update(deltaTime){

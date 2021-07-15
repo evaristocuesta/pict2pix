@@ -21,7 +21,10 @@ Pict2Pix.js is a library to add pixels animation to an image
     <div id="div1">
         <img id="image-jh" src="images/jimi-hendrix.jpg">
     </div>
-    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.1.2/dist/pict2pix.min.js"></script>
+    <div id="div2">
+        <img id="image-ay" src="images/angus-young.jpg">
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.2.0/dist/pict2pix.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
@@ -33,13 +36,32 @@ const image = document.getElementById('image-jh');
 window.onload = function initialize() {
     pict2pix.animate({
         image: image,
-        numberOfParticles: 3000,
+        numberOfParticles: 800,
         horizontalSpeed: 1,
         verticalSpeed: -1,
         particleType: 'twisted-particle'
     });
 }
+
+const imageay = document.getElementById('image-ay');
+const div2 = document.getElementById('div2');
+
+div2.onmouseenter = function over() {
+    pict2pix.animate({
+        image: imageay,
+        numberOfParticles: 800,
+        horizontalSpeed: 1,
+        verticalSpeed: 1,
+        particleType: 'straight-particle'
+    });
+}
+
+div2.onmouseleave = function out() {
+    pict2pix.stop(imageay.id);
+}
 ```
+
+Take a look at the example directory for more example code.
 
 ### Options
 - **image**: Mandatory. It is the image wich you want to add de pixels effect

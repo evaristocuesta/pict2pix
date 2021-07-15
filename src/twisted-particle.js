@@ -3,6 +3,10 @@ import StraightParticle from "./straight-particle";
 export default class TwistedParticle extends StraightParticle {
     #angle = 0;
 
+    constructor(config) {
+        super(config);
+    }
+
     update(deltaTime) {
         super.update(deltaTime);
         this.#angle += this.speed / 20;

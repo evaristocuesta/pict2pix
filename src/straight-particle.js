@@ -1,39 +1,39 @@
 import Particle from "./particle";
 
 export default class StraightParticle extends Particle {
-    constructor(){
-        super();
-        this.x = Math.random() * Particle.maxWidth;
-        this.y = Math.random() * Particle.maxHeight;
+    constructor(config){
+        super(config);
+        this.x = Math.random() * this.config.maxWidth;
+        this.y = Math.random() * this.config.maxHeight;
         this.speed = 0;
         this.size = Math.random() * 2 + 0.2;
         this.color;
     }
     update(deltaTime){
+        this.y += (3 - this.speed) * deltaTime * 0.03 * this.config.verticalSpeed;
+        this.x += (3 - this.speed) * deltaTime * 0.03 * this.config.horizontalSpeed;
+        if (this.y >= this.config.maxHeight && this.config.verticalSpeed > 0){
+            this.y = 0;
+            this.x = Math.random() * this.config.maxWidth;
+        }
+        if (this.y < 0 && this.config.verticalSpeed < 0){
+            this.y = this.config.maxHeight - 1;
+            this.x = Math.random() * this.config.maxWidth;
+        }
+        if (this.x >= this.config.maxWidth && this.config.horizontalSpeed > 0){
+            this.x = 0;
+            this.y = Math.random() * this.config.maxHeight;
+        }
+        if (this.x < 0 && this.config.horizontalSpeed < 0){
+            this.x = this.config.maxWidth - 1;
+            this.y = Math.random() * this.config.maxHeight;
+        }
         let yInt = Math.floor(this.y);
         let xInt = Math.floor(this.x);
-        if (yInt >= 0 && yInt < Particle.maxHeight 
-            && xInt >= 0 && xInt < Particle.maxWidth){
-            this.speed = Particle.mappedImage[yInt][xInt][0];
-            this.color = Particle.mappedImage[yInt][xInt][1];
-        }
-        this.y += (3 - this.speed) * deltaTime * 0.03 * Particle.verticalSpeed;
-        this.x += (3 - this.speed) * deltaTime * 0.03 * Particle.horizontalSpeed;
-        if (this.y >= Particle.maxHeight && Particle.verticalSpeed > 0){
-            this.y = 0;
-            this.x = Math.random() * Particle.maxWidth;
-        }
-        if (this.y < 0 && Particle.verticalSpeed < 0){
-            this.y = Particle.maxHeight - 1;
-            this.x = Math.random() * Particle.maxWidth;
-        }
-        if (this.x >= Particle.maxWidth && Particle.horizontalSpeed > 0){
-            this.x = 0;
-            this.y = Math.random() * Particle.maxHeight;
-        }
-        if (this.x < 0 && Particle.horizontalSpeed < 0){
-            this.x = Particle.maxWidth - 1;
-            this.y = Math.random() * Particle.maxHeight;
+        if (yInt >= 0 && yInt < this.config.maxHeight 
+            && xInt >= 0 && xInt < this.config.maxWidth){
+            this.speed = this.config.mappedImage[yInt][xInt][0];
+            this.color = this.config.mappedImage[yInt][xInt][1];
         }
     }
     draw(ctx){

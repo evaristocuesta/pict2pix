@@ -7,38 +7,38 @@ export default class Pict2Pix {
     #lastTime = 0;
     #deltaTime = 0;
     #particlesArray = [];
-    #numberOfParticles = 3000;
-    #mappedImage = [];
+    #config;
     
-    constructor(configPic2Pix) {
-        this.#numberOfParticles = configPic2Pix.numberOfParticles || 3000;
+    constructor(config) {
+        this.#config = config;
+
         this.#canvas = document.createElement('canvas');
-        this.#canvas.width = configPic2Pix.image.width || configPic2Pix.image.naturalWidth;
-        this.#canvas.height = configPic2Pix.image.height || configPic2Pix.image.naturalHeight;
-        configPic2Pix.image.replaceWith(this.#canvas);
+        this.#canvas.width = this.#config.image.width || this.#config.image.naturalWidth;
+        this.#canvas.height = this.#config.image.height || this.#config.image.naturalHeight;
+        this.#config.image.replaceWith(this.#canvas);
         this.#ctx = this.#canvas.getContext('2d');
 
-        this.#ctx.drawImage(configPic2Pix.image, 0, 0, this.#canvas.width, this.#canvas.height);
+        this.#ctx.drawImage(this.#config.image, 0, 0, this.#canvas.width, this.#canvas.height);
         const pixels = this.#ctx.getImageData(0, 0, this.#canvas.width, this.#canvas.height);
         this.#ctx.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
 
-        this.mapImage(pixels);
+        this.#config.numberOfParticles = this.#config.numberOfParticles || 3000;
+        this.#config.mappedImage = this.mapImage(pixels);
+        this.#config.maxWidth = this.#canvas.width;
+        this.#config.maxHeight = this.#canvas.height;
+        this.#config.verticalSpeed = config.verticalSpeed ?? 1;
+        this.#config.horizontalSpeed = config.horizontalSpeed ?? 1;
+
+        const factory = new ParticleFactory();
+        for (let i = 0; i < this.#config.numberOfParticles; i++){
+            this.#particlesArray.push(factory.createParticle(config));
+        }
 
         requestAnimationFrame(this.loop.bind(this));
-        Particle.mappedImage = this.#mappedImage;
-        Particle.maxWidth = this.#canvas.width;
-        Particle.maxHeight = this.#canvas.height;
-        Particle.verticalSpeed = configPic2Pix.verticalSpeed ?? 1;
-        Particle.horizontalSpeed = configPic2Pix.horizontalSpeed ?? 1;
-        const factory = new ParticleFactory();
-        for (let i = 0; i < this.#numberOfParticles; i++){
-            this.#particlesArray.push(factory.createParticle(configPic2Pix.particleType ?? 'straight-particle'));
-        }
     }
 
     mapImage(pixels) {
-        let min = 654654;
-        let max = -654654;
+        let mappedImage = [];
         for (let y = 0; y < this.#canvas.height; y++){
             let row = [];
             for (let x = 0; x < this.#canvas.width; x++){
@@ -46,20 +46,15 @@ export default class Pict2Pix {
                 const green = pixels.data[(y * 4 * pixels.width) + (x * 4 + 1)];
                 const blue = pixels.data[(y * 4 * pixels.width) + (x * 4 + 2)];
                 const brightness = this.calculateRelativeBrightness(red, green, blue);
-                if (brightness < min) {
-                    min = brightness;
-                }
-                if (brightness > max) {
-                    max = brightness;
-                }
                 const cell = [
                     brightness,
                     'rgb(' + red + ',' + green + ',' + blue + ')'
                 ];
                 row.push(cell);
             }
-            this.#mappedImage.push(row);
+            mappedImage.push(row);
         }
+        return mappedImage;
     }
 
     calculateRelativeBrightness(red, green, blue){

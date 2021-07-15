@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: white;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  padding: 10px 10px;
+  margin: 20px 50px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content img {
+  max-height: 100%;
+  max-width: 90%;
+  box-shadow: 0px 0px 6px 0px #a5a5a5;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.content canvas {
+  max-height: 100%;
+  max-width: 90%;
+  box-shadow: 0px 0px 6px 0px #a5a5a5;
+  border-radius: 5px;
+  padding: 20px;
+}

@@ -1,4 +1,4 @@
-import ParticleFactory from "./particle-factory";
+import ParticleFactory from "../particle-factory";
 
 export default class ShootingStars {
 

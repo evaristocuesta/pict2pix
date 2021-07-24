@@ -1,4 +1,4 @@
-import ShootingStars from "./shooting-stars-effect";
+import ShootingStars from "./shooting-stars-effect/shooting-stars-effect";
 
 export default class EffectFactory {
     #effects;

@@ -1,4 +1,4 @@
-import Particle from "./particle";
+import Particle from "../particle";
 
 export default class StraightParticle extends Particle {
     constructor(config){

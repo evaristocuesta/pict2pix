@@ -1,5 +1,5 @@
-import StraightParticle from "./straight-particle";
-import TwistedParticle from "./twisted-particle";
+import StraightParticle from "./shooting-stars-effect/straight-particle";
+import TwistedParticle from "./shooting-stars-effect/twisted-particle";
 
 export default class ParticleFactory {
     #particles;

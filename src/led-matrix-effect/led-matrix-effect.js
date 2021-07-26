@@ -4,6 +4,7 @@ export default class LedMatrixEffect {
     
     #config;
     #particlesArray = [];
+    #accumulatedTime = 0;
     
     constructor(config) {
         this.#config = config;
@@ -42,6 +43,15 @@ export default class LedMatrixEffect {
     }
 
     update(deltaTime) {
+        this.#accumulatedTime += deltaTime;
+        if (this.#accumulatedTime > 5000) {
+            const x = Math.random() * this.#config.image.width;
+            const y = Math.random() * this.#config.image.height;
+            for (let i = 0; i < this.#particlesArray.length; i++){
+                this.#particlesArray[i].setPos(x, y);
+            }
+            this.#accumulatedTime = 0;
+        }
         for (let i = 0; i < this.#particlesArray.length; i++){
             this.#particlesArray[i].update(deltaTime);
         }

@@ -1,17 +1,25 @@
 import ParticleFactory from "../particle-factory";
+import LedMatrixEffectReturningState from "./led-matrix-effect-returning-state";
 
 export default class LedMatrixEffect {
     
     #config;
     #particlesArray = [];
-    #accumulatedTime = 0;
+    #state;
     
     constructor(config) {
         this.#config = config;
-
+        this.#config.speed = config.speed ? (config.speed >= 1 && config.speed <= 10 ? config.speed : 9) : 19;
         const imageData = this.reduceImage(this.#config.image);
         
         this.createParticlesFromImage(imageData, config);
+
+        this.setState(new LedMatrixEffectReturningState(this.#config));
+    }
+
+    setState(state) {
+        this.#state = state;
+        this.#state.setLedMatrixEffect(this);
     }
 
     createParticlesFromImage(imageData, config) {
@@ -43,18 +51,7 @@ export default class LedMatrixEffect {
     }
 
     update(deltaTime) {
-        this.#accumulatedTime += deltaTime;
-        if (this.#accumulatedTime > 5000) {
-            const x = Math.random() * this.#config.image.width;
-            const y = Math.random() * this.#config.image.height;
-            for (let i = 0; i < this.#particlesArray.length; i++){
-                this.#particlesArray[i].setPos(x, y);
-            }
-            this.#accumulatedTime = 0;
-        }
-        for (let i = 0; i < this.#particlesArray.length; i++){
-            this.#particlesArray[i].update(deltaTime);
-        }
+        this.#state.update(deltaTime, this.#particlesArray);
     }
 
     draw(ctx) {

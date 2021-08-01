@@ -11,7 +11,8 @@ window.onload = function initialize() {
     });
     pict2pix.animate({
         image: imagejh2,
-        particleType: 'led-matrix'
+        particleType: 'led-matrix',
+        speed: 6
     });
 }
 

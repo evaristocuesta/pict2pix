@@ -5,6 +5,8 @@ export default class DefaultLedParticle {
     #y;
     #originalX;
     #originalY;
+    #targetX;
+    #targetY;
     #maxDistance;
     #color;
     #minForce;
@@ -15,23 +17,34 @@ export default class DefaultLedParticle {
         this.#y = 0;
         this.#originalX = props.x;
         this.#originalY = props.y;
+        this.setTargetToOrigin();
         this.#color = props.color;
-        this.#maxDistance = Math.sqrt(Math.pow(this.#config.image.width, 2) + Math.pow(this.#config.image.height, 2));
-        this.#minForce = ((Math.random() * 6) + 3) * 0.001;
+        this.#minForce = ((Math.random() * this.#config.speed) + this.#config.speed / 2) * 0.001;
     }
 
-    setPos(x, y) {
-        this.#x = x;
-        this.#y = y;
+    setTarget(x, y) {
+        this.#targetX = x;
+        this.#targetY = y;
     }
 
-    update(deltaTime) {
-        const dx = this.#originalX - this.#x;
-        const dy = this.#originalY - this.#y;
-        const distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-        const force = (this.#maxDistance - distance) / this.#maxDistance;
-        this.#x += force * dx * deltaTime * this.#minForce;
-        this.#y += force * dy * deltaTime * this.#minForce;
+    setTargetToOrigin() {
+        this.#targetX = this.#originalX;
+        this.#targetY = this.#originalY;
+    }
+
+    update(deltaTime, speed) {
+        const dx = this.#targetX - this.#x;
+        const dy = this.#targetY - this.#y;
+        if (Math.abs(dx) > 1 || Math.abs(dy) > 1 ) {
+            this.#x += speed * dx * deltaTime * this.#minForce;
+            this.#y += speed * dy * deltaTime * this.#minForce;
+            return false;
+        }
+        else {
+            this.#x = this.#targetX;
+            this.#y = this.#targetY;
+            return true;
+        }
     }
 
     draw(ctx) {

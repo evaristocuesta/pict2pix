@@ -13,8 +13,8 @@ export default class DefaultLedParticle {
 
     constructor(config, props) {
         this.#config = config;
-        this.#x = 0;
-        this.#y = 0;
+        this.#x = props.x;
+        this.#y = props.y;
         this.#originalX = props.x;
         this.#originalY = props.y;
         this.setTargetToOrigin();
@@ -30,6 +30,30 @@ export default class DefaultLedParticle {
     setTargetToOrigin() {
         this.#targetX = this.#originalX;
         this.#targetY = this.#originalY;
+    }
+
+    getX() {
+        return this.#x;
+    }
+
+    getY() {
+        return this.#y;
+    }
+
+    getOriginalX() {
+        return this.#originalX;
+    }
+
+    getOriginalY() {
+        return this.#originalY;
+    }
+
+    getTargetX() {
+        return this.#targetX;
+    }
+
+    getTargetY() {
+        return this.#targetY;
     }
 
     update(deltaTime, speed) {

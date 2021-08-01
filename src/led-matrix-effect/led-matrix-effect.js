@@ -1,5 +1,6 @@
 import ParticleFactory from "../particle-factory";
 import LedMatrixEffectReturningState from "./led-matrix-effect-returning-state";
+import LedMatrixStateFactory from "./led-matrix-state-factory";
 
 export default class LedMatrixEffect {
     
@@ -13,7 +14,8 @@ export default class LedMatrixEffect {
         const imageData = this.reduceImage(this.#config.image);
         
         this.createParticlesFromImage(imageData, config);
-
+        const factory = new LedMatrixStateFactory();
+        this.setState(factory.createLedMatrixState(this.#config, this.#particlesArray));
         this.setState(new LedMatrixEffectReturningState(this.#config, this.#particlesArray));
     }
 

@@ -5,21 +5,18 @@ export default class LedMatrixEffectIdleState extends LedMatrixEffectBaseState {
     
     #accumulatedTime = 0;
     #config;
+    #particlesArray;
 
-    constructor(config) {
+    constructor(config, particles) {
         super();
         this.#config = config;
+        this.#particlesArray = particles;
     }
 
-    update(deltaTime, particlesArray) {
+    update(deltaTime) {
         this.#accumulatedTime += deltaTime;
         if (this.#accumulatedTime > 8000) {
-            const x = Math.random() * this.#config.image.width;
-            const y = Math.random() * this.#config.image.height;
-            for (let i = 0; i < particlesArray.length; i++){
-                particlesArray[i].setTarget(x, y);
-            }
-            this.ledMatrixEffect.setState(new LedMatrixEffectGoingState(this.#config));
+            this.ledMatrixEffect.setState(new LedMatrixEffectGoingState(this.#config, this.#particlesArray));
         }
     }
 }

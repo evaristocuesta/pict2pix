@@ -14,7 +14,7 @@ export default class LedMatrixEffect {
         
         this.createParticlesFromImage(imageData, config);
 
-        this.setState(new LedMatrixEffectReturningState(this.#config));
+        this.setState(new LedMatrixEffectReturningState(this.#config, this.#particlesArray));
     }
 
     setState(state) {
@@ -51,7 +51,7 @@ export default class LedMatrixEffect {
     }
 
     update(deltaTime) {
-        this.#state.update(deltaTime, this.#particlesArray);
+        this.#state.update(deltaTime);
     }
 
     draw(ctx) {

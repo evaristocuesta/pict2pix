@@ -1,7 +1,7 @@
 import LedMatrixEffectBaseState from "./led-matrix-effect-base-state";
 import LedMatrixEffectReturningState from "./led-matrix-effect-returning-state";
 
-export default class LedMatrixEffectGoingState extends LedMatrixEffectBaseState {
+export default class LedMatrixGoingPointState extends LedMatrixEffectBaseState {
     
     #config;
     #particlesArray;

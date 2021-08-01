@@ -1,5 +1,5 @@
+import LedMatrixStateFactory from "./led-matrix-state-factory";
 import LedMatrixEffectBaseState from "./led-matrix-effect-base-state";
-import LedMatrixEffectGoingState from "./led-matrix-effect-going-state";
 
 export default class LedMatrixEffectIdleState extends LedMatrixEffectBaseState {
     
@@ -16,7 +16,8 @@ export default class LedMatrixEffectIdleState extends LedMatrixEffectBaseState {
     update(deltaTime) {
         this.#accumulatedTime += deltaTime;
         if (this.#accumulatedTime > 8000) {
-            this.ledMatrixEffect.setState(new LedMatrixEffectGoingState(this.#config, this.#particlesArray));
+            const factory = new LedMatrixStateFactory();
+            this.ledMatrixEffect.setState(factory.createLedMatrixState(this.#config, this.#particlesArray));
         }
     }
 }

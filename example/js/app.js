@@ -13,7 +13,8 @@ window.onload = function initialize() {
         image: imagejh2,
         particleType: 'led-matrix',
         type: 'random',
-        speed: 6
+        speed: 6, 
+        transitionTime: 5000
     });
 }
 

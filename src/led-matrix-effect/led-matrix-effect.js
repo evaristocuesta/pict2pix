@@ -9,7 +9,8 @@ export default class LedMatrixEffect {
     
     constructor(config) {
         this.#config = config;
-        this.#config.speed = config.speed ? (config.speed >= 1 && config.speed <= 10 ? config.speed : 9) : 19;
+        this.#config.speed = config.speed ? (config.speed >= 1 && config.speed <= 10 ? config.speed : 8) : 8;
+        this.#config.transitionTime = config.transitionTime ?? 8000;
         const imageData = this.reduceImage(this.#config.image);
         
         this.createParticlesFromImage(imageData, config);

@@ -12,7 +12,7 @@ window.onload = function initialize() {
     pict2pix.animate({
         image: imagejh2,
         particleType: 'led-matrix',
-        type: 'horizontal',
+        type: 'random',
         speed: 6
     });
 }

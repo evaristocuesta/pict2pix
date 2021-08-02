@@ -1,5 +1,4 @@
 import LedMatrixEffectBaseState from "./led-matrix-effect-base-state";
-import LedMatrixEffectReturningState from "./led-matrix-effect-returning-state";
 
 export default class LedMatrixGoingVerticalState extends LedMatrixEffectBaseState {
     
@@ -22,7 +21,7 @@ export default class LedMatrixGoingVerticalState extends LedMatrixEffectBaseStat
             finished = finished && particleIdle;
         }
         if (finished) {
-            this.ledMatrixEffect.setState(new LedMatrixEffectReturningState(this.#config, this.#particlesArray));            
+            this.ledMatrixEffect.setState(factory.createLedMatrixState('returning', this.#config, this.#particlesArray));            
         }
     }
 }

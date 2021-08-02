@@ -16,8 +16,7 @@ export default class LedMatrixEffectIdleState extends LedMatrixEffectBaseState {
     update(deltaTime) {
         this.#accumulatedTime += deltaTime;
         if (this.#accumulatedTime > 8000) {
-            const factory = new LedMatrixStateFactory();
-            this.ledMatrixEffect.setState(factory.createLedMatrixState(this.#config.type, this.#config, this.#particlesArray));
+            this.ledMatrixEffect.setState(LedMatrixStateFactory.createLedMatrixState(this.#config.type, this.#config, this.#particlesArray));
         }
     }
 }

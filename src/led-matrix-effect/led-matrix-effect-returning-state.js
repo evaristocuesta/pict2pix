@@ -1,4 +1,5 @@
 import LedMatrixEffectBaseState from "./led-matrix-effect-base-state";
+import LedMatrixStateFactory from "./led-matrix-state-factory";
 
 export default class LedMatrixEffectReturningState extends LedMatrixEffectBaseState {
     
@@ -10,6 +11,7 @@ export default class LedMatrixEffectReturningState extends LedMatrixEffectBaseSt
         this.#config = config;
         this.#particlesArray = particles;
         for (let i = 0; i < this.#particlesArray.length; i++){
+            
             this.#particlesArray[i].setTargetToOrigin();
         }
     }
@@ -21,7 +23,7 @@ export default class LedMatrixEffectReturningState extends LedMatrixEffectBaseSt
             finished = finished && particleIdle;
         }
         if (finished) {
-            this.ledMatrixEffect.setState(factory.createLedMatrixState('idle', this.#config, this.#particlesArray));
+            this.ledMatrixEffect.setState(LedMatrixStateFactory.createLedMatrixState('idle', this.#config, this.#particlesArray));
         }
     }
 }

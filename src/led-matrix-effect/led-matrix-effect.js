@@ -1,5 +1,4 @@
 import ParticleFactory from "../particle-factory";
-import LedMatrixEffectReturningState from "./led-matrix-effect-returning-state";
 import LedMatrixStateFactory from "./led-matrix-state-factory";
 
 export default class LedMatrixEffect {
@@ -14,9 +13,7 @@ export default class LedMatrixEffect {
         const imageData = this.reduceImage(this.#config.image);
         
         this.createParticlesFromImage(imageData, config);
-        const factory = new LedMatrixStateFactory();
-        this.setState(factory.createLedMatrixState(this.#config, this.#particlesArray));
-        this.setState(new LedMatrixEffectReturningState(this.#config, this.#particlesArray));
+        this.setState(LedMatrixStateFactory.createLedMatrixState('returning', this.#config, this.#particlesArray));
     }
 
     setState(state) {
@@ -25,14 +22,13 @@ export default class LedMatrixEffect {
     }
 
     createParticlesFromImage(imageData, config) {
-        const factory = new ParticleFactory();
         for (var y = 0; y < imageData.height; y++) {
             for (var x = 0; x < imageData.width; x++) {
                 if (imageData.data[(y * 4 * imageData.width) + (x * 4) + 3] > 128) {
                     let color = "rgb(" + imageData.data[(y * 4 * imageData.width) + (x * 4)]
                         + "," + imageData.data[(y * 4 * imageData.width) + (x * 4) + 1]
                         + "," + imageData.data[(y * 4 * imageData.width) + (x * 4) + 2] + ")";
-                    let particle = factory.createParticle(config, { x: x * 4, y: y * 4, color: color });
+                    let particle = ParticleFactory.createParticle(config, { x: x * 4, y: y * 4, color: color });
                     this.#particlesArray.push(particle);
 
                 }

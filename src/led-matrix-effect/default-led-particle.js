@@ -32,6 +32,11 @@ export default class DefaultLedParticle {
         this.#targetY = this.#originalY;
     }
 
+    setPos(x, y) {
+        this.#x = x;
+        this.#y = y;
+    }
+    
     getX() {
         return this.#x;
     }

@@ -17,8 +17,7 @@ export default class Pict2Pix {
         this.#canvas.height = this.#config.image.height || this.#config.image.naturalHeight;
         this.#ctx = this.#canvas.getContext('2d');
 
-        const factory = new EffectFactory();
-        this.#effect = factory.createParticle(config);
+        this.#effect = EffectFactory.createParticle(config);
     }
 
     update(deltaTime) {

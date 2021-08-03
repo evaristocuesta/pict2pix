@@ -22,9 +22,8 @@ export default class ShootingStars {
         this.#config.verticalSpeed = config.verticalSpeed ?? 1;
         this.#config.horizontalSpeed = config.horizontalSpeed ?? 1;
 
-        const factory = new ParticleFactory();
         for (let i = 0; i < this.#config.numberOfParticles; i++){
-            this.#particlesArray.push(factory.createParticle(config));
+            this.#particlesArray.push(ParticleFactory.createParticle(config));
         }
     }
 

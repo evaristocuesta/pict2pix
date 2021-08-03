@@ -13,8 +13,8 @@ export default class DefaultLedParticle {
 
     constructor(config, props) {
         this.#config = config;
-        this.#x = props.x;
-        this.#y = props.y;
+        this.#x = 0;
+        this.#y = 0;
         this.#originalX = props.x;
         this.#originalY = props.y;
         this.setTargetToOrigin();

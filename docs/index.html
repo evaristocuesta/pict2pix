@@ -7,103 +7,198 @@
     <meta name="author" content="Evaristo Cuesta">
     <title>Pict2Pix.js</title>
     <link rel="canonical" href="https://evaristocuesta.github.io/pict2pix/">
+    <link rel="stylesheet" href=" ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" media="screen" href="css/style.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.2.0/styles/a11y-dark.css">
+    <link rel="stylesheet" media="screen" href="css/style.css?v=0.3.0"/>
 
     <meta name="theme-color" content="#7952b3">
 
   </head>
   <body>
-    
-<header>
-  <div class="bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">Pict2Pix.js library</h4>
-          <p class="text-muted">Pict2Pix.js is a library to add pixels animation to an image</p>
+    <!-- <a class="gh-ribbon red right" href="https://github.com/evaristocuesta/pict2pix" target="_blank"><i class="bi-github" role="img" aria-label="GitHub"></i>&nbsp;&nbsp;Fork me on GitHub!</a>     -->
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Pict2Pix.js</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav pt-2 py-md-0">
+              <li class="nav-item col-6 col-md-auto">
+                <a class="nav-link active" aria-current="page" href="#get_started">Get Started</a>
+              </li>
+              <!-- <li class="nav-item col-6 col-lg-auto dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Effects
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Twisted Particles</a></li>
+                  <li><a class="dropdown-item" href="#">Straight Particles</a></li>
+                  <li><a class="dropdown-item" href="#">Led Matrix</a></li>
+                </ul>
+              </li> -->
+            </ul>
+            <hr class="d-lg-none text-white-50">
+            <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+              <li class="nav-item col-6 col-md-auto">
+                <a class="nav-link active" target="_blank" aria-current="page" href="https://github.com/evaristocuesta/pict2pix">
+                  <i class="bi-github" role="img" aria-label="GitHub"></i>
+                  <small class="ms-2">GitHub</small>
+                </a>
+              </li>
+              <li class="nav-item col-6 col-md-auto">
+                <a class="nav-link active" target="_blank" aria-current="page" href="https://www.linkedin.com/in/evaristocuesta/">
+                  <i class="bi-linkedin" role="img" aria-label="Linkedin"></i>
+                  <small class="ms-2">Linkedin</small>
+                </a>
+              </li>
+              <li class="nav-item col-6 col-md-auto">
+                <a class="nav-link active" target="_blank" aria-current="page" href="https://twitter.com/evaristocuesta">
+                  <i class="bi-twitter" role="img" aria-label="Twitter"></i>
+                  <small class="ms-2">Twitter</small>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">github</h4>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/evaristocuesta/pict2pix" class="text-white">Fork in github</a></li>
-          </ul>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="py-2 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Pict2Pix.js library</h1>
+            <p class="text-muted">Pict2Pix.js is a creative coding library to add pixels animation to an image</p>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</header>
+      </section>
 
-<main>
+      <div class="album py-5 bg-light">
+        <div class="container">
 
-  <section class="py-2 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Effects examples</h1>
-      </div>
-    </div>
-  </section>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <img id="image-jh1" src="images/jimi-hendrix.jpg">
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+                <div class="card-body">
+                  <h5 class="card-text">Twisted Particle Effect</h5>
+                  <p class="card-text">This effect is always working</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm" id="div2">
+                <img id="image-ay" src="images/angus-young.jpg">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-          <div class="card shadow-sm">
-            <img id="image-jh1" src="images/jimi-hendrix.jpg">
+                <div class="card-body">
+                  <h5 class="card-text">Straight Particle Effect</h5>  
+                  <p class="card-text">Working when the mouse is over the picture</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <img id="image-jh2" src="images/jimi-hendrix.jpg">
 
-            <div class="card-body">
-              <h5 class="card-text">Twisted Particle Effect</h5>
-              <p class="card-text">This effect is always working</p>
-              <div class="d-flex justify-content-between align-items-center">
+                <div class="card-body">
+                  <h5 class="card-text">Led Matrix Effect</h5>
+                  <p class="card-text">This effect is always working</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card shadow-sm" id="div2">
-            <img id="image-ay" src="images/angus-young.jpg">
-
-            <div class="card-body">
-              <h5 class="card-text">Straight Particle Effect</h5>  
-              <p class="card-text">Working when the mouse is over the picture</p>
-              <div class="d-flex justify-content-between align-items-center">
-              </div>
+      </div>
+      <a id="get_started"></a>
+      <section class="get-started bg-light py-2 text-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-8 mx-auto">
+              <h2 class="fw-light">Get Started</h2>
             </div>
           </div>
+          <hr>
         </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img id="image-jh2" src="images/jimi-hendrix.jpg">
+      </section>
 
-            <div class="card-body">
-              <h5 class="card-text">Led Matrix Effect</h5>
-              <p class="card-text">This effect is always working</p>
-              <div class="d-flex justify-content-between align-items-center">
-              </div>
+      <div class="bg-light">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-2">
+            <div class="col">
+              <div class="col">HTML</div>
+              <pre><code class="html">
+&#x3C;!DOCTYPE html&#x3E;
+&#x3C;html lang=&#x22;en&#x22;&#x3E;
+&#x3C;head&#x3E;
+    &#x3C;meta charset=&#x22;UTF-8&#x22;&#x3E;
+    &#x3C;meta http-equiv=&#x22;X-UA-Compatible&#x22; content=&#x22;IE=edge&#x22;&#x3E;
+    &#x3C;meta name=&#x22;viewport&#x22; content=&#x22;width=device-width, initial-scale=1.0&#x22;&#x3E;
+    &#x3C;title&#x3E;Document&#x3C;/title&#x3E;
+    &#x3C;link rel=&#x22;stylesheet&#x22; media=&#x22;screen&#x22; href=&#x22;css/style.css&#x22;/&#x3E;
+&#x3C;/head&#x3E;
+&#x3C;body&#x3E;
+    &#x3C;div class=&#x22;content&#x22; id=&#x22;div1&#x22;&#x3E;
+        &#x3C;img id=&#x22;image-jh&#x22; src=&#x22;images/jimi-hendrix.jpg&#x22;&#x3E;
+    &#x3C;/div&#x3E;
+    &#x3C;script src=&#x22;https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.3.0/dist/pict2pix.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+    &#x3C;script src=&#x22;js/app.js&#x22;&#x3E;&#x3C;/script&#x3E;
+&#x3C;/body&#x3E;
+&#x3C;/html&#x3E;
+              </code></pre>
+            </div>
+            <div class="col">
+              <div class="col">Javascript</div>
+              <pre><code class="javascript">
+const image = document.getElementById('image-jh');
+window.onload = function initialize() {
+    pict2pix.animate({
+        image: image,
+        numberOfParticles: 800,
+        horizontalSpeed: 1,
+        verticalSpeed: -1,
+        particleType: 'twisted-particle'
+    });
+}
+
+
+
+
+
+
+
+              </code></pre>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </main>
 
-</main>
-
-<footer class="text-muted py-5">
-  <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Back to top</a>
-    </p>
-    <p class="mb-1">Pict2Pix.js is a library to add pixels animation to an image</p>
-    <p class="mb-0">Authors: <a href="https://www.evaristocuesta.com">Evaristo Cuesta</a> inspired on effects of <a href="https://www.youtube.com/channel/UCEqc149iR-ALYkGM6TG-7vQ">Frank's Laboratory</a>.</p>
-  </div>
-</footer>
+    <footer class="text-muted py-5">
+      <div class="container">
+        <p class="float-end mb-1">
+          <a href="#">Back to top</a>
+        </p>
+        <p class="mb-0">Developep by <a target="_blank" href="https://www.evaristocuesta.com">Evaristo Cuesta</a> inspired by effects of <a target="_blank" href="https://www.youtube.com/c/Frankslaboratory/">Frank's Laboratory</a>.</p>
+      </div>
+    </footer>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.3.0/dist/pict2pix.min.js"></script>
-<script src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.3.0/dist/pict2pix.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/languages/javascript.min.js"></script>
+    <script src="js/app.js?v=0.3.0.0"></script>
       
   </body>
 </html>

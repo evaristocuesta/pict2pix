@@ -1,3 +1,6 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -10,4 +13,116 @@
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
+}
+
+@media screen and (min-width:800px) {
+ 
+}
+
+:root {
+  --color-red: #aa0000;
+  --color-red-text: #ffffff;
+  --color-green: #007200;
+  --color-green-text: #ffffff;
+  --color-darkblue: #121621;
+  --color-darkblue-text: #ffffff;
+  --color-gray: #6d6d6d;
+  --color-gray-text: #ffffff;
+  --color-white: #ffffff;
+  --color-white-text: #000000;
+}
+
+.gh-ribbon {
+	font-family: Helvetica, Arial, sans-serif;
+	width: 600px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1em;
+	padding: 10px;
+	text-decoration: none;
+	position: fixed;
+	text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+	z-index: 1000;
+}
+
+.gh-ribbon i {
+  font-size: 1.2rem;
+}
+
+.gh-ribbon:after {
+	content: "";
+	position: relative;
+	display: block;
+	top: 8px;
+	left: 0;
+	width: 600px;
+	border: 1px dashed rgba(255, 255, 255, 0.5);
+}
+
+.gh-ribbon:before {
+	content: "";
+	position: relative;
+	display: block;
+	bottom: 8px;
+	left: 0;
+	width: 600px;
+	border: 1px dashed rgba(255, 255, 255, 0.5);
+}
+
+.gh-ribbon.white:after {
+	content: "";
+	position: relative;
+	display: block;
+	top: 8px;
+	left: 0;
+	width: 600px;
+	border: 1px dashed rgba(0, 0, 0, 0.4);
+}
+
+.gh-ribbon.white:before {
+	content: "";
+	position: relative;
+	display: block;
+	bottom: 8px;
+	left: 0;
+	width: 600px;
+	border: 1px dashed rgba(0, 0, 0, 0.4);
+}
+
+.gh-ribbon.right {
+	top: 15px;
+	right: -265px; /* top - right = width / 2 */
+	transform: rotate(45deg) translateY(100%);
+}
+
+.gh-ribbon.left {
+	top: 15px;
+	left: -265px; /* top - left = width / 2 */
+	transform: rotate(-45deg) translateY(100%);
+}
+
+.gh-ribbon.red {
+	background-color: var(--color-red);
+	color: var(--color-red-text);
+}
+
+.gh-ribbon.green {
+	background-color: var(--color-green);
+	color: var(--color-green-text);
+}
+
+.gh-ribbon.darkblue {
+	background-color: var(--color-darkblue);
+	color: var(--color-darkblue-text);
+}
+
+.gh-ribbon.gray {
+	background-color: var(--color-gray);
+	color: var(--color-gray-text);
+}
+
+.gh-ribbon.white {
+	background-color: var(--color-white);
+	color: var(--color-white-text);
 }

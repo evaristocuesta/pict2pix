@@ -34,3 +34,18 @@ div2.onmouseenter = function over() {
 div2.onmouseleave = function out() {
     pict2pix.stop(imageay.id);
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+    });
+});
+
+// const navLinks = document.querySelectorAll('.nav-item')
+const menuToggle = document.getElementById('navbarSupportedContent')
+const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle:false})
+// navLinks.forEach((l) => {
+//     l.addEventListener('click', () => { bsCollapse.toggle() })
+// })
+
+document.body.addEventListener('click', () => bsCollapse.toggle());

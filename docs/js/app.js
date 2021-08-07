@@ -41,15 +41,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
-// const navLinks = document.querySelectorAll('.nav-item')
-const menuToggle = document.getElementById('navbarSupportedContent')
-const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle:false})
-// navLinks.forEach((l) => {
-//     l.addEventListener('click', () => { bsCollapse.toggle() })
-// })
-
-document.body.addEventListener('click', () => bsCollapse.toggle());
-
 document.addEventListener("scroll", handleScroll);
 // get a reference to our predefined button
 var scrollToTopBtn = document.getElementById("toTop");

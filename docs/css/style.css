@@ -126,3 +126,15 @@
 	background-color: var(--color-white);
 	color: var(--color-white-text);
 }
+
+.toTop {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    text-decoration: none;
+    color: rgb(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.1rem 0.6rem;
+    display: none;
+	font-size: 1.5rem;
+}

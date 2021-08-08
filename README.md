@@ -1,9 +1,37 @@
 # Pict2Pix.js
-Pict2Pix.js is a library to add pixels animation to an image
+Pict2Pix.js is a creative coding library to add pixels animation to an image.
 
 ![Screenshot example](./resources/pict2pix.gif)
 
-## Using Pict2Pix
+# Get started with Pict2Pix
+
+## Setting up a basic skeleton
+To get started with Pict2Pix.js library, follow the next steps:
+- Include the prict2pix.min.js file.
+```html
+<script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.3.0/dist/pict2pix.min.js"></script>
+```
+- Place an image inside a container because the library will replace the image by a canvas.
+```html
+<div id="div1">
+    <img id="image-jh" src="images/jimi-hendrix.jpg">
+</div>
+```
+- Get the image element and call to pict2pix.animate function.
+```javascript
+const image = document.getElementById('image-jh');
+window.onload = function initialize() {
+    pict2pix.animate({
+        image: image,
+        numberOfParticles: 800,
+        horizontalSpeed: 1,
+        verticalSpeed: -1,
+        particleType: 'twisted-particle'
+    });
+}
+```
+
+## Full basic skeleton code
 
 ### HTML
 
@@ -21,10 +49,7 @@ Pict2Pix.js is a library to add pixels animation to an image
     <div id="div1">
         <img id="image-jh" src="images/jimi-hendrix.jpg">
     </div>
-    <div id="div2">
-        <img id="image-ay" src="images/angus-young.jpg">
-    </div>
-    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.2.0/dist/pict2pix.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.3.0/dist/pict2pix.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
@@ -42,35 +67,9 @@ window.onload = function initialize() {
         particleType: 'twisted-particle'
     });
 }
-
-const imageay = document.getElementById('image-ay');
-const div2 = document.getElementById('div2');
-
-div2.onmouseenter = function over() {
-    pict2pix.animate({
-        image: imageay,
-        numberOfParticles: 800,
-        horizontalSpeed: 1,
-        verticalSpeed: 1,
-        particleType: 'straight-particle'
-    });
-}
-
-div2.onmouseleave = function out() {
-    pict2pix.stop(imageay.id);
-}
 ```
 
-Take a look at the example directory for more example code.
-
-### Options
-- **image**: Mandatory. It is the image wich you want to add de pixels effect
-- **numberOfParticles**: Optional. Number of particles in the image. Be careful about the perfomance if you add a big number of particles. The default value is 3000.
-- **horizontalSpeed**: Optional. Horizontal speed of the particles. Can be positive or negative. Zero for no horizontal movement. The default value is 1. 
-- **verticalSpeed**: Optional. Vertical speed of the particles. Can be positive or negative. Zero for no vertical movement. The default value is 1. 
-- **particleType**: Optional. Type effect. The default value is 'straight-particle'
-  - 'straight-particle'
-  - 'twisted-particle'
+Take a look at https://evaristocuesta.github.io/pict2pix/ for more examples code.
 
 ## Contributors
 - [Evaristo Cuesta](https://evaristocuesta.com)

@@ -1,5 +1,5 @@
 # Pict2Pix.js
-Pict2Pix.js is a creative coding library to add pixels animation to an image.
+Pict2Pix.js is a creative coding library to apply fancy pixel animations to images.
 
 ![Screenshot example](./resources/pict2pix.gif)
 

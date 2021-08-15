@@ -5,25 +5,27 @@ export default class LedMatrixEffectReturningState extends LedMatrixEffectBaseSt
     
     #config;
     #particlesArray;
+    #accumulatedTime = 0;
 
     constructor(config, particles) {
         super();
         this.#config = config;
         this.#particlesArray = particles;
         for (let i = 0; i < this.#particlesArray.length; i++){
-            
-            this.#particlesArray[i].setTargetToOrigin();
+            this.#particlesArray[i].setTransitionTime(this.#config.transitionTime);
+            this.#particlesArray[i].setFromPos();
+            this.#particlesArray[i].setToOrigin();
         }
     }
-
     update(deltaTime) {
-        let finished = true;
-        for (let i = 0; i < this.#particlesArray.length; i++){
-            let particleIdle = this.#particlesArray[i].update(deltaTime, 1);
-            finished = finished && particleIdle;
-        }
-        if (finished) {
+        this.#accumulatedTime += deltaTime;
+        if (this.#accumulatedTime > this.#config.transitionTime) {
             this.ledMatrixEffect.setState(LedMatrixStateFactory.createLedMatrixState('idle', this.#config, this.#particlesArray));
+        }
+        else {
+            for (let i = 0; i < this.#particlesArray.length; i++){
+                this.#particlesArray[i].update(this.#accumulatedTime, this.#config.transitionTime);
+            }            
         }
     }
 }

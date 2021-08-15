@@ -9,7 +9,7 @@ Pict2Pix.js is a creative coding library to apply fancy pixel animations to imag
 To get started with Pict2Pix.js library, follow the next steps:
 - Include the prict2pix.min.js file.
 ```html
-<script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.3.0/dist/pict2pix.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.3.1/dist/pict2pix.min.js"></script>
 ```
 - Place an image inside a container because the library will replace the image by a canvas.
 ```html
@@ -49,7 +49,7 @@ window.onload = function initialize() {
     <div id="div1">
         <img id="image-jh" src="images/jimi-hendrix.jpg">
     </div>
-    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.3.0/dist/pict2pix.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.3.1/dist/pict2pix.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

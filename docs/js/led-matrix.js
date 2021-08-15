@@ -2,7 +2,7 @@ const imagejh = document.getElementById('image-jh');
 
 window.onload = function initialize() {
     pict2pix.animate({
-        image: imagejh2,
+        image: imagejh,
         particleType: 'led-matrix',
         type: 'random',
         transitionTime: 2000,

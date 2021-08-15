@@ -14,8 +14,9 @@ window.onload = function initialize() {
         image: imagejh2,
         particleType: 'led-matrix',
         type: 'random',
-        speed: 6, 
-        transitionTime: 5000
+        transitionTime: 2000,
+        idleTime: 5000,
+        ledSize: 4
     });
     pict2pix.animate({
       image: imageay,

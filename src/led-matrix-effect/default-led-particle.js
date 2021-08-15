@@ -5,11 +5,15 @@ export default class DefaultLedParticle {
     #y;
     #originalX;
     #originalY;
-    #targetX;
-    #targetY;
-    #maxDistance;
+    #fromX;
+    #fromY;
+    #toX;
+    #toY;
     #color;
-    #minForce;
+    #dx;
+    #dy;
+    #transitionTime;
+    #realTransitionTime;
 
     constructor(config, props) {
         this.#config = config;
@@ -17,19 +21,51 @@ export default class DefaultLedParticle {
         this.#y = 0;
         this.#originalX = props.x;
         this.#originalY = props.y;
-        this.setTargetToOrigin();
+        this.setFromOrigin();
+        this.setToOrigin();
         this.#color = props.color;
-        this.#minForce = ((Math.random() * this.#config.speed) + this.#config.speed / 2) * 0.001;
     }
 
-    setTarget(x, y) {
-        this.#targetX = x;
-        this.#targetY = y;
+    #calculateDistance() {
+        this.#dx = this.#toX - this.#fromX;
+        this.#dy = this.#toY - this.#fromY;
     }
 
-    setTargetToOrigin() {
-        this.#targetX = this.#originalX;
-        this.#targetY = this.#originalY;
+    setTransitionTime(transitionTime) {
+        this.#transitionTime = transitionTime;
+        const max = Math.floor(this.#transitionTime - (this.#transitionTime / 10));
+        const min = Math.floor(this.#transitionTime / 2);
+        this.#realTransitionTime = Math.floor(Math.random() * (max - min) + min);
+    }
+
+    setFrom(x, y) {
+        this.#fromX = x;
+        this.#fromY = y;
+        this.#calculateDistance();
+    }
+
+    setTo(x, y) {
+        this.#toX = x;
+        this.#toY = y;
+        this.#calculateDistance();
+    }
+
+    setFromPos() {
+        this.#fromX = this.#x;
+        this.#fromY = this.#y;
+        this.#calculateDistance();
+    }
+
+    setFromOrigin() {
+        this.#fromX = this.#originalX;
+        this.#fromY = this.#originalY;
+        this.#calculateDistance();
+    }
+
+    setToOrigin() {
+        this.#toX = this.#originalX;
+        this.#toY = this.#originalY;
+        this.#calculateDistance();
     }
 
     setPos(x, y) {
@@ -54,25 +90,22 @@ export default class DefaultLedParticle {
     }
 
     getTargetX() {
-        return this.#targetX;
+        return this.#toX;
     }
 
     getTargetY() {
-        return this.#targetY;
+        return this.#toY;
     }
 
-    update(deltaTime, speed) {
-        const dx = this.#targetX - this.#x;
-        const dy = this.#targetY - this.#y;
-        if (Math.abs(dx) > 1 || Math.abs(dy) > 1 ) {
-            this.#x += speed * dx * deltaTime * this.#minForce;
-            this.#y += speed * dy * deltaTime * this.#minForce;
-            return false;
+    update(accumulatedTime) {
+        const time = accumulatedTime / this.#realTransitionTime;
+        if (accumulatedTime <= this.#realTransitionTime) {
+            this.#x = this.#dx * time + this.#fromX;
+            this.#y = this.#dy * time + this.#fromY;
         }
         else {
-            this.#x = this.#targetX;
-            this.#y = this.#targetY;
-            return true;
+            this.#x = this.#toX;
+            this.#y = this.#toY;
         }
     }
 

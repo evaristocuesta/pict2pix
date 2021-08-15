@@ -5,27 +5,31 @@ export default class LedMatrixGoingHorizontalState extends LedMatrixEffectBaseSt
     
     #config;
     #particlesArray;
+    #accumulatedTime = 0;
 
     constructor(config, particles) {
         super();
         this.#config = config;
         this.#particlesArray = particles;
         for (let i = 0; i < this.#particlesArray.length; i++){
-            this.#particlesArray[i].setTarget(this.#particlesArray[i].getOriginalX(), 0);
+            this.#particlesArray[i].setTransitionTime(this.#config.transitionTime);
+            this.#particlesArray[i].setFromPos();
+            this.#particlesArray[i].setTo(this.#particlesArray[i].getOriginalX(), -2);
         }
     }
 
     update(deltaTime) {
-        let finished = true;
-        for (let i = 0; i < this.#particlesArray.length; i++){
-            let particleIdle = this.#particlesArray[i].update(deltaTime, 2);
-            finished = finished && particleIdle;
-        }
-        if (finished) {
+        this.#accumulatedTime += deltaTime;
+        if (this.#accumulatedTime > this.#config.transitionTime) {
             for (let i = 0; i < this.#particlesArray.length; i++){
-                this.#particlesArray[i].setPos(this.#particlesArray[i].getOriginalX(), this.#config.image.height - 1);
+                this.#particlesArray[i].setPos(this.#particlesArray[i].getOriginalX(), this.#config.maxHeight - 1);
             }
             this.ledMatrixEffect.setState(LedMatrixStateFactory.createLedMatrixState('returning', this.#config, this.#particlesArray));            
+        }
+        else {
+            for (let i = 0; i < this.#particlesArray.length; i++){
+                this.#particlesArray[i].update(this.#accumulatedTime, this.#config.transitionTime);
+            }
         }
     }
 }

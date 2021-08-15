@@ -1,4 +1,6 @@
 # Pict2Pix.js
+[![Last release](https://img.shields.io/github/v/release/evaristocuesta/pict2pix?label=last%20release)](https://github.com/evaristocuesta/Pict2Pix/releases) [![Languages](https://img.shields.io/github/languages/top/evaristocuesta/Pict2Pix)](https://github.com/evaristocuesta/Pict2Pix/) [![License](https://img.shields.io/github/license/evaristocuesta/Pict2Pix)](https://raw.githubusercontent.com/evaristocuesta/Pict2Pix/master/LICENSE) [![Author](https://img.shields.io/badge/author-Evaristo%20Cuesta-blue)](https://www.evaristocuesta.com/)
+
 Pict2Pix.js is a creative coding library to apply fancy pixel animations to images.
 
 ![Screenshot example](./resources/pict2pix.gif)

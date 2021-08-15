@@ -14,6 +14,8 @@ export default class DefaultLedParticle {
     #dy;
     #transitionTime;
     #realTransitionTime;
+    #radio;
+    #endAngle = Math.PI*2;
 
     constructor(config, props) {
         this.#config = config;
@@ -24,6 +26,7 @@ export default class DefaultLedParticle {
         this.setFromOrigin();
         this.setToOrigin();
         this.#color = props.color;
+        this.#radio = props.ledSize / 2;
     }
 
     #calculateDistance() {
@@ -111,7 +114,7 @@ export default class DefaultLedParticle {
 
     draw(ctx) {
         ctx.beginPath();
-        ctx.arc(this.#x, this.#y, 2, 0, Math.PI*2);
+        ctx.arc(this.#x, this.#y, this.#radio, 0, this.#endAngle);
         ctx.closePath();
         ctx.fillStyle = this.#color;
         ctx.fill();

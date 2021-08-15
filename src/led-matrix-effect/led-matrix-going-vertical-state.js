@@ -11,10 +11,11 @@ export default class LedMatrixGoingVerticalState extends LedMatrixEffectBaseStat
         super();
         this.#config = config;
         this.#particlesArray = particles;
+        const pos = -1 * this.#config.ledSize / 2;
         for (let i = 0; i < this.#particlesArray.length; i++) {
             this.#particlesArray[i].setTransitionTime(this.#config.transitionTime);
             this.#particlesArray[i].setFromPos();
-            this.#particlesArray[i].setTo(-2, this.#particlesArray[i].getOriginalY());
+            this.#particlesArray[i].setTo(pos, this.#particlesArray[i].getOriginalY());
         }
     }
 

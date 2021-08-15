@@ -6,6 +6,7 @@ export default class LedMatrixEffect {
     #config;
     #particlesArray = [];
     #state;
+    #factor;
     
     constructor(config) {
         this.#config = config;
@@ -13,6 +14,7 @@ export default class LedMatrixEffect {
         this.#config.maxHeight = this.#config.image.height;
         this.#config.transitionTime = config.transitionTime ?? 2000;
         this.#config.idleTime = config.idleTime ?? 5000;
+        this.#factor = this.#config.maxWidth * this.#config.maxHeight / 5000;
         const imageData = this.reduceImage(this.#config.image);
         this.createParticlesFromImage(imageData, config);
         this.setState(LedMatrixStateFactory.createLedMatrixState('returning', this.#config, this.#particlesArray));
@@ -26,11 +28,14 @@ export default class LedMatrixEffect {
     createParticlesFromImage(imageData, config) {
         for (var y = 0; y < imageData.height; y++) {
             for (var x = 0; x < imageData.width; x++) {
-                if (imageData.data[(y * 4 * imageData.width) + (x * 4) + 3] > 128) {
-                    let color = "rgb(" + imageData.data[(y * 4 * imageData.width) + (x * 4)]
-                        + "," + imageData.data[(y * 4 * imageData.width) + (x * 4) + 1]
-                        + "," + imageData.data[(y * 4 * imageData.width) + (x * 4) + 2] + ")";
-                    let particle = ParticleFactory.createParticle(config, { x: x * 4 + 2, y: y * 4 + 2, color: color });
+                const posX = x * 4;
+                const posY = y * 4;
+                const row = posY * imageData.width;
+                if (imageData.data[row + posX + 3] > 128) {
+                    let color = "rgb(" + imageData.data[row + posX]
+                        + "," + imageData.data[row + posX + 1]
+                        + "," + imageData.data[row + posX + 2] + ")";
+                    let particle = ParticleFactory.createParticle(config, { x: posX + 2, y: posY + 2, color: color });
                     this.#particlesArray.push(particle);
 
                 }

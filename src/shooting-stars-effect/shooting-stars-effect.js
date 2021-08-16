@@ -1,4 +1,5 @@
 import ParticleFactory from "../particle-factory";
+import { mapImage } from "../utils/image-utils";
 
 export default class ShootingStars {
 
@@ -18,7 +19,7 @@ export default class ShootingStars {
         this.#config.numberOfParticles = this.#config.numberOfParticles || 3000;
         this.#config.maxWidth = this.#config.image.width;
         this.#config.maxHeight = this.#config.image.height;
-        this.#config.mappedImage = this.mapImage(pixels);
+        this.#config.mappedImage = mapImage(pixels, this.#config.maxWidth, this.#config.maxHeight);
         this.#config.verticalSpeed = config.verticalSpeed ?? 1;
         this.#config.horizontalSpeed = config.horizontalSpeed ?? 1;
 
@@ -40,33 +41,5 @@ export default class ShootingStars {
         for (let i = 0; i < this.#particlesArray.length; i++){
             this.#particlesArray[i].draw(ctx);
         }
-    }
-
-    mapImage(pixels) {
-        let mappedImage = [];
-        for (let y = 0; y < this.#config.maxHeight; y++){
-            let row = [];
-            for (let x = 0; x < this.#config.maxWidth; x++){
-                const red = pixels.data[(y * 4 * pixels.width) + (x * 4)];
-                const green = pixels.data[(y * 4 * pixels.width) + (x * 4 + 1)];
-                const blue = pixels.data[(y * 4 * pixels.width) + (x * 4 + 2)];
-                const brightness = this.calculateRelativeBrightness(red, green, blue);
-                const cell = [
-                    brightness,
-                    'rgb(' + red + ',' + green + ',' + blue + ')'
-                ];
-                row.push(cell);
-            }
-            mappedImage.push(row);
-        }
-        return mappedImage;
-    }
-
-    calculateRelativeBrightness(red, green, blue){
-        return Math.sqrt(
-            (red * red) * 0.299 +
-            (green * green) * 0.587 +
-            (blue * blue) * 0.114
-        )/100;
     }
 }

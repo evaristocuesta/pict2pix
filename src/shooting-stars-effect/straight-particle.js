@@ -32,8 +32,8 @@ export default class StraightParticle extends Particle {
         let xInt = Math.floor(this.x);
         if (yInt >= 0 && yInt < this.config.maxHeight 
             && xInt >= 0 && xInt < this.config.maxWidth){
-            this.speed = this.config.mappedImage[yInt][xInt][0];
-            this.color = this.config.mappedImage[yInt][xInt][1];
+            this.speed = this.config.mappedImage[yInt][xInt].brightness;
+            this.color = this.config.mappedImage[yInt][xInt].color;
         }
     }
     draw(ctx){

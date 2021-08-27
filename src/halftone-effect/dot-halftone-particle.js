@@ -59,6 +59,11 @@ export default class DotHalftoneParticle {
         this.#calculateDistance();
     }
 
+    setPosOrigin() {
+        this.#x = this.#originalX;
+        this.#y = this.#originalY;
+    }
+
     setPos(x, y) {
         this.#x = x;
         this.#y = y;
@@ -105,13 +110,12 @@ export default class DotHalftoneParticle {
     getRadio(x, y) {
         const posX = Math.floor((x - (this.#config.dotSize / 2)) / this.#config.dotSize);
         const posY = Math.floor((y - (this.#config.dotSize / 2)) / this.#config.dotSize);
-        console.log(posX + ', ' + posY);
-        if (posX < this.#config.mappedImage.length && posY < this.#config.mappedImage[0].length) {
-            const brightness = this.#config.mappedImage[posX][posY].brightness;
-            return this.#config.dotSize * (2.55 - brightness) / 2;
+        if (posY < this.#config.mappedImage.length && posX < this.#config.mappedImage[0].length) {
+            const brightness = this.#config.mappedImage[posY][posX].brightness;
+            return this.#config.dotSize * (2.55 - brightness) / 4;
         }
         else {
-            return 1;
+            return 0;
         }
     }
 }

@@ -12,8 +12,9 @@ export default class HalftoneEffect {
         this.#config = config;
         this.#config.maxWidth = this.#config.image.width;
         this.#config.maxHeight = this.#config.image.height;
-        this.#config.transitionTime = config.transitionTime ?? 2000;
-        this.#config.idleTime = config.idleTime ?? 5000;
+        this.#config.dotSize = config.dotSize ? (config.dotSize >= 4 ? config.dotSize : 4) : 4;
+        this.#config.transitionTime = config.transitionTime ?? 8000;
+        this.#config.idleTime = config.idleTime ?? 4000;
         this.#config.color = config.color ?? 'rgb(30, 30, 30)';
         this.#config.separation = config.separation ? (config.separation >= 1 ? config.separation : 10) : 10;
         const imageData = reduceImage(this.#config.image, this.#config.dotSize);

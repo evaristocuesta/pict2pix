@@ -13,7 +13,7 @@ export default class HalftoneEffectReturningState extends HalftoneEffectBaseStat
         for (let i = 0; i < this.#particlesArray.length; i++) {
             this.#particlesArray[i].setTransitionTime(this.#config.transitionTime);
             this.#particlesArray[i].setFromOrigin();
-            this.#particlesArray[i].setTo(this.#particlesArray[i].getOriginalX() * 10, this.#particlesArray[i].getOriginalY() * 10);
+            this.#particlesArray[i].setTo(this.#particlesArray[i].getOriginalX() * this.#config.separation, this.#particlesArray[i].getOriginalY() * this.#config.separation);
         }
     }
 

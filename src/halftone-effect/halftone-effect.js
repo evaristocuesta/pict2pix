@@ -15,6 +15,7 @@ export default class HalftoneEffect {
         this.#config.transitionTime = config.transitionTime ?? 2000;
         this.#config.idleTime = config.idleTime ?? 5000;
         this.#config.color = config.color ?? 'rgb(30, 30, 30)';
+        this.#config.separation = config.separation ? (config.separation >= 1 ? config.separation : 10) : 10;
         const imageData = reduceImage(this.#config.image, this.#config.dotSize);
         this.#config.mappedImage = mapImage(imageData, imageData.width, imageData.height);
         this.createParticlesFromMappedImage();

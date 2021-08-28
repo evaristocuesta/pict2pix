@@ -1,4 +1,5 @@
 import Particle from "../particle";
+import Constant from "../utils/constant";
 
 export default class StraightParticle extends Particle {
     constructor(config){
@@ -32,8 +33,8 @@ export default class StraightParticle extends Particle {
         let xInt = Math.floor(this.x);
         if (yInt >= 0 && yInt < this.config.maxHeight 
             && xInt >= 0 && xInt < this.config.maxWidth){
-            this.speed = this.config.mappedImage[yInt][xInt][0];
-            this.color = this.config.mappedImage[yInt][xInt][1];
+            this.speed = this.config.mappedImage[yInt][xInt].brightness;
+            this.color = this.config.mappedImage[yInt][xInt].color;
         }
     }
     draw(ctx){
@@ -41,7 +42,7 @@ export default class StraightParticle extends Particle {
         ctx.globalAlpha = 1;
         ctx.fillStyle = this.color;
         ctx.strokeStyle = this.color;
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.size, 0, Constant.TWO_PI);
         ctx.fill();
     }
 }

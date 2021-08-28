@@ -9,8 +9,4 @@ export default class LedMatrixEffectBaseState {
     update(deltaTime) {
 
     }
-
-    setLedMatrixEffect(ledMatrixEffect) {
-        this.ledMatrixEffect = ledMatrixEffect;
-    }
 }

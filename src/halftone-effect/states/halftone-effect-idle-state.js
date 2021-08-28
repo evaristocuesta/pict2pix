@@ -15,15 +15,7 @@ export default class HalftoneEffectIdleState extends HalftoneEffectBaseState {
     update(deltaTime) {
         this.#accumulatedTime += deltaTime;
         if (this.#accumulatedTime > this.#config.idleTime) {
-            // for (let i = 0; i < this.#particlesArray.length; i++){
-            //     this.#particlesArray[i].setPos(this.#particlesArray[i].getOriginalX(), this.#particlesArray[i].getOriginalY());
-            // }
             this.halftoneEffect.setState(HalftoneEffectStateFactory.createHalftoneEffectState('returning', this.#config, this.#particlesArray));            
-        }
-        else {
-            for (let i = 0; i < this.#particlesArray.length; i++){
-                //this.#particlesArray[i].update(this.#accumulatedTime, this.#config.transitionTime);
-            }
         }
     }
 }

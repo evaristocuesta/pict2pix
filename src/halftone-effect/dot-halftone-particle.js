@@ -77,24 +77,28 @@ export default class DotHalftoneParticle {
         return this.#y;
     }
 
+    getFromX() {
+        return this.#fromX;
+    }
+
+    getFromY() {
+        return this.#fromY;
+    }
+
+    getDx() {
+        return this.#dx;
+    }
+
+    getDy() {
+        return this.#dy;
+    }
+
     getOriginalX() {
         return this.#originalX;
     }
 
     getOriginalY() {
         return this.#originalY;
-    }
-
-    update(accumulatedTime) {
-        const time = accumulatedTime / this.#transitionTime;
-        if (accumulatedTime <= this.#transitionTime) {
-            this.#x = this.#dx * time + this.#fromX;
-            this.#y = this.#dy * time + this.#fromY;
-        }
-        else {
-            this.#x = this.#toX;
-            this.#y = this.#toY;
-        }
     }
 
     draw(ctx) {

@@ -23,8 +23,11 @@ export default class HalftoneEffectReturningState extends HalftoneEffectBaseStat
             this.halftoneEffect.setState(HalftoneEffectStateFactory.createHalftoneEffectState('going', this.#config, this.#particlesArray));            
         }
         else {
-            for (let i = 0; i < this.#particlesArray.length; i++){
-                this.#particlesArray[i].update(this.#accumulatedTime, this.#config.transitionTime);
+            for (let i = 0; i < this.#particlesArray.length; i++) {
+                const time = this.#accumulatedTime / this.#config.transitionTime;
+                const x = -this.#particlesArray[i].getDx() * (Math.sqrt(1 - time * time) - 1) + this.#particlesArray[i].getFromX();
+                const y = -this.#particlesArray[i].getDy() * (Math.sqrt(1 - time * time) - 1) + this.#particlesArray[i].getFromY();
+                this.#particlesArray[i].setPos(x, y);
             }
         }
     }

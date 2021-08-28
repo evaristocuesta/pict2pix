@@ -40,7 +40,6 @@ export default class HalftoneEffect {
                 }
             }
         }
-        console.log(this.#config.mappedImage.length + ', ' + this.#config.mappedImage[0].length);
     }
 
     update(deltaTime) {

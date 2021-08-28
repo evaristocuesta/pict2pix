@@ -20,14 +20,14 @@ export default class HalftoneEffectGoingState extends HalftoneEffectBaseState {
     update(deltaTime) {
         this.#accumulatedTime += deltaTime;
         if (this.#accumulatedTime > this.#config.transitionTime) {
-            for (let i = 0; i < this.#particlesArray.length; i++) {
-                this.#particlesArray[i].setPosOrigin();
-            }
             this.halftoneEffect.setState(HalftoneEffectStateFactory.createHalftoneEffectState('idle', this.#config, this.#particlesArray));            
         }
         else {
             for (let i = 0; i < this.#particlesArray.length; i++){
-                this.#particlesArray[i].update(this.#accumulatedTime, this.#config.transitionTime);
+                const time = this.#accumulatedTime / this.#config.transitionTime - 1;
+                const x = this.#particlesArray[i].getDx() * Math.sqrt(1 - time * time * time * time) + this.#particlesArray[i].getFromX();
+                const y = this.#particlesArray[i].getDy() * Math.sqrt(1 - time * time * time * time) + this.#particlesArray[i].getFromY();
+                this.#particlesArray[i].setPos(x, y);
             }
         }
     }

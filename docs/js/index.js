@@ -19,10 +19,11 @@ window.onload = function initialize() {
         ledSize: 4
     });
     pict2pix.animate({
-      image: imageay,
-      numberOfParticles: 800,
-      horizontalSpeed: 1,
-      verticalSpeed: 1,
-      particleType: 'straight-particle'
+        image: imagejh3,
+        particleType: 'halftone', 
+        transitionTime: 10000,
+        idleTime: 4000,
+        color: 'rgb(0, 60, 90)', 
+        separation: 8
   });
 }

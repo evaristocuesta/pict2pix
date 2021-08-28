@@ -11,7 +11,6 @@ export default class HalftoneEffectGoingState extends HalftoneEffectBaseState {
         this.#config = config;
         this.#particlesArray = particles;
         for (let i = 0; i < this.#particlesArray.length; i++) {
-            this.#particlesArray[i].setTransitionTime(this.#config.transitionTime);
             this.#particlesArray[i].setFrom(this.#particlesArray[i].getOriginalX() * this.#config.separation, this.#particlesArray[i].getOriginalY() * this.#config.separation);
             this.#particlesArray[i].setToOrigin();
         }

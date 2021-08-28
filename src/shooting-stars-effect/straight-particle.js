@@ -1,4 +1,5 @@
 import Particle from "../particle";
+import Constant from "../utils/constant";
 
 export default class StraightParticle extends Particle {
     constructor(config){
@@ -41,7 +42,7 @@ export default class StraightParticle extends Particle {
         ctx.globalAlpha = 1;
         ctx.fillStyle = this.color;
         ctx.strokeStyle = this.color;
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.size, 0, Constant.TWO_PI);
         ctx.fill();
     }
 }

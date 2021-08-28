@@ -14,6 +14,7 @@ export default class HalftoneEffect {
         this.#config.maxHeight = this.#config.image.height;
         this.#config.transitionTime = config.transitionTime ?? 2000;
         this.#config.idleTime = config.idleTime ?? 5000;
+        this.#config.color = config.color ?? 'rgb(30, 30, 30)';
         const imageData = reduceImage(this.#config.image, this.#config.dotSize);
         this.#config.mappedImage = mapImage(imageData, imageData.width, imageData.height);
         this.createParticlesFromMappedImage();
@@ -33,7 +34,7 @@ export default class HalftoneEffect {
                     let particle = ParticleFactory.createParticle(this.#config, { 
                         x: x * this.#config.dotSize + shift, 
                         y: y * this.#config.dotSize + shift, 
-                        color: 'rgb(30, 30, 30)', 
+                        color: this.#config.color, 
                         size: this.#config.dotSize * (2.55 - this.#config.mappedImage[y][x].brightness) / 2
                     });
                     this.#particlesArray.push(particle);

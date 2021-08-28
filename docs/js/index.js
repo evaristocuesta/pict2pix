@@ -1,6 +1,6 @@
 const imagejh = document.getElementById('image-jh1');
 const imagejh2 = document.getElementById('image-jh2');
-const imageay = document.getElementById('image-ay');
+const imagejh3 = document.getElementById('image-jh3');
 
 window.onload = function initialize() {
     pict2pix.animate({

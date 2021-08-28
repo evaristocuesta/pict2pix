@@ -1,3 +1,5 @@
+import Constant from "../utils/constant";
+
 export default class DefaultLedParticle {
 
     #config;
@@ -15,7 +17,6 @@ export default class DefaultLedParticle {
     #transitionTime;
     #realTransitionTime;
     #radio;
-    #endAngle = Math.PI*2;
 
     constructor(config, props) {
         this.#config = config;
@@ -114,7 +115,7 @@ export default class DefaultLedParticle {
 
     draw(ctx) {
         ctx.beginPath();
-        ctx.arc(this.#x, this.#y, this.#radio, 0, this.#endAngle);
+        ctx.arc(this.#x, this.#y, this.#radio, 0, Constant.TWO_PI);
         ctx.closePath();
         ctx.fillStyle = this.#color;
         ctx.fill();

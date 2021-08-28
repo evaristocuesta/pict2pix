@@ -1,3 +1,5 @@
+import Constant from "../utils/constant";
+
 export default class DotHalftoneParticle {
     
     #config;
@@ -12,9 +14,6 @@ export default class DotHalftoneParticle {
     #fromY;
     #dx;
     #dy;
-    #transitionTime;
-    #radio;
-    static #END_ANGLE = Math.PI*2;
 
     constructor(config, props) {
         this.#config = config;
@@ -23,16 +22,11 @@ export default class DotHalftoneParticle {
         this.#originalY = props.y;
         this.setFromOrigin();
         this.setToOrigin();
-        this.#radio = props.size / 2;
     }
 
     #calculateDistance() {
         this.#dx = this.#toX - this.#fromX;
         this.#dy = this.#toY - this.#fromY;
-    }
-
-    setTransitionTime(transitionTime) {
-        this.#transitionTime = transitionTime;
     }
 
     setFrom(x, y) {
@@ -104,7 +98,7 @@ export default class DotHalftoneParticle {
     draw(ctx) {
         if (this.#x < this.#config.maxWidth && this.#y < this.#config.maxHeight) {
             ctx.beginPath();
-            ctx.arc(this.#x, this.#y, this.getRadio(this.#x, this.#y), 0, DotHalftoneParticle.#END_ANGLE);
+            ctx.arc(this.#x, this.#y, this.getRadio(this.#x, this.#y), 0, Constant.TWO_PI);
             ctx.closePath();
             ctx.fillStyle = this.#color;
             ctx.fill();

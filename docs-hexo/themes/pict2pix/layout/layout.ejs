@@ -35,7 +35,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <% site.pages.forEach(function(page) { %>
                     <% if (page.menu) { %>
-                      <li><a class="dropdown-item" href="<%- url_for(page.path) %>"><%- page.menu %></a></li>
+                      <li><a class="dropdown-item" href="<%= url_for(page.path) %>"><%= page.menu %></a></li>
                     <% } %>
                   <% }) %>
                 </ul>

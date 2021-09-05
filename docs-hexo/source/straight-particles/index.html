@@ -1,0 +1,78 @@
+---
+title: Straight Particles effect
+menu: Straight Particles
+---
+<main>
+
+    <section class="py-2 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Straight Particles Effect</h1>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
+          <div class="col"></div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img id="image-jh" src="../images/jimi-hendrix.jpg" alt="Pict2Pix.js library">
+              <div class="card-body">
+                <h5 class="card-text">Straight Particles Effect</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="get-started bg-light py-2">
+      <div class="container">
+        <div class="row">
+          <div>
+            <h3 class="fw-light">Setting up Straight Particles Effect</h3>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div>
+            <ul>
+              <li>
+                <div>Get the image element and call to pict2pix.animate function</div>
+                <div>
+                  <pre><code class="javascript">const imagejh = document.getElementById('image-jh');
+
+window.onload = function initialize() {
+  pict2pix.animate({
+      image: imagejh,
+      particleType: 'straight-particle',
+      numberOfParticles: 800,
+      horizontalSpeed: -1,
+      verticalSpeed: -1
+  });
+}</code></pre>
+                </div>
+              </li>
+              <li>
+                <div>Options</div>
+                <ul>
+                  <li><b>image</b>: Required. The html element to apply the effect</li>
+                  <li><b>particleType</b>: Required. The effect to apply to the image. In this case is 'straight-particle'</li>
+                  <li>
+                  <b>numberOfParticles</b>: Optional. Number of particles in the image. Be careful about the perfomance if you add a big number of particles. Default value is 3000. 
+                  </li>
+                  <li><b>horizontalSpeed</b>: Optional. Horizontal speed of the particles. Can be positive or negative. Zero for no Horizontal movement. Default value is 1.</li>
+                  <li><b>verticalSpeed</b>: Optional. Vertical speed of the particles. Can be positive or negative. Zero for no vertical movement. Default value is 1.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

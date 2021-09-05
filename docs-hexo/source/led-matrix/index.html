@@ -1,0 +1,86 @@
+---
+title: Led Matrix effect
+menu: Led Matrix
+---
+<main>
+
+    <section class="py-2 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Led Matrix Effect</h1>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
+          <div class="col"></div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img id="image-jh" src="../images/jimi-hendrix.jpg" alt="Pict2Pix.js library">
+              <div class="card-body">
+                <h5 class="card-text">Led Matrix Effect</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="get-started bg-light py-2">
+      <div class="container">
+        <div class="row">
+          <div>
+            <h3 class="fw-light">Setting up Led Matrix Effect</h3>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div>
+            <ul>
+              <li>
+                <div>Get the image element and call to pict2pix.animate function</div>
+                <div>
+                  <pre><code class="javascript">const imagejh = document.getElementById('image-jh');
+
+window.onload = function initialize() {
+  pict2pix.animate({
+      image: imagejh,
+      particleType: 'led-matrix',
+      type: 'random',
+      transitionTime: 2000,
+      idleTime: 3000,
+      ledSize: 4
+  });
+}</code></pre>
+                </div>
+              </li>
+              <li>
+                <div>Options</div>
+                <ul>
+                  <li><b>image</b>: Required. The html element to apply the effect</li>
+                  <li><b>particleType</b>: Required. The effect to apply to the image. In this case is 'led-matrix'</li>
+                  <li>
+                  <b>type</b>: Optional. Transition effect type. Default value is random. 
+                    <ul>
+                      <li>random</li>
+                      <li>point</li>
+                      <li>horizontal</li>
+                      <li>vertical</li>
+                    </ul>
+                  </li>
+                  <li><b>ledSize</b>: Optional. Led size. Must be greater than 4. Default value 4.</li>
+                  <li><b>transitionTime</b>: Optional. Trasitions time in ms. Default value 2000.</li>
+                  <li><b>idleTime</b>: Optional. Idle time in ms. Default value 5000.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

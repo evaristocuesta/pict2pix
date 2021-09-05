@@ -1,0 +1,173 @@
+<main>
+
+    <section class="py-2 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Pict2Pix.js library</h1>
+          <p class="text-muted">Last release <%= config.version %> - <a href="https://github.com/evaristocuesta/pict2pix/releases" target="_blank">All releases</a></p>
+          <p class="text-muted">Pict2Pix.js is a creative coding javascript library to apply fancy pixel animations to images.</p>
+        </div>
+      </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        <div class="d-grid mx-auto">
+          <a class="btn btn-darkgray btn-lg" href="https://github.com/evaristocuesta/pict2pix" target="_blank">
+            <i class="bi-github" role="img" aria-label="GitHub"></i>&nbsp;View on GitHub
+          </a>
+        </div>
+        <div class="d-grid mx-auto">
+          <a class="btn btn-darkgray btn-lg" href="#get_started">
+            <i class="bi bi-file-earmark-code-fill"></i>&nbsp;Get Started
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card shadow-sm">
+              <img id="image-jh1" src="images/jimi-hendrix.jpg" alt="Pict2Pix.js library">
+              <div class="card-body">
+                <h5 class="card-text">Twisted Particle Effect</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm" id="div2">
+              <img id="image-jh3" src="images/jimi-hendrix.jpg" alt="Pict2Pix.js library">
+              <div class="card-body">
+                <h5 class="card-text">Halftone Effect</h5>  
+                <div class="d-flex justify-content-between align-items-center">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img id="image-jh2" src="images/jimi-hendrix.jpg" alt="Pict2Pix.js library">
+              <div class="card-body">
+                <h5 class="card-text">Led Matrix Effect</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a id="get_started"></a>
+    <section class="get-started bg-light py-2">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h2 class="fw-light">Get Started</h2>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div>
+            <h3 class="fw-light">Setting up a basic skeleton</h3>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div>
+            To get started with Pict2Pix.js library, follow the next steps.  
+          </div>
+        </div>
+        <div class="row py-2">
+          <div>
+            <ul>
+              <li>
+                <div>Include the prict2pix.min.js file.</div> 
+                <div>
+                  <pre><code>&#x3C;script src=&#x22;https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@<%= config.version %>/dist/pict2pix.min.js&#x22;&#x3E;&#x3C;/script&#x3E;</code></pre> 
+                </div>
+              </li>
+              <li>
+                <div>Place an image inside a container because the library will replace the image by a canvas.</div> 
+                <div>
+                  <pre><code>&#x3C;div class=&#x22;content&#x22; id=&#x22;div1&#x22;&#x3E;
+&#x3C;img id=&#x22;image-jh&#x22; src=&#x22;images/jimi-hendrix.jpg&#x22;&#x3E;
+&#x3C;/div&#x3E;</code></pre>
+                </div>
+              </li>
+              <li>
+                <div>Get the image element and call to pict2pix.animate function.</div> 
+                <div>
+                  <pre><code class="javascript">const image = document.getElementById('image-jh');
+window.onload = function initialize() {
+  pict2pix.animate({
+      image: image,
+      numberOfParticles: 800,
+      horizontalSpeed: 1,
+      verticalSpeed: -1,
+      particleType: 'twisted-particle'
+  });
+}</code></pre>
+                </div>
+              </li>  
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <h3 class="fw-light">Full basic skeleton code</h3>
+          </div>
+        </div>          
+        <div class="row py-2">
+        </div>
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-2">
+          <div class="col">
+            <div class="col">HTML (index.html)</div>
+            <pre><code class="html">
+&#x3C;!DOCTYPE html&#x3E;
+&#x3C;html lang=&#x22;en&#x22;&#x3E;
+&#x3C;head&#x3E;
+  &#x3C;meta charset=&#x22;UTF-8&#x22;&#x3E;
+  &#x3C;meta http-equiv=&#x22;X-UA-Compatible&#x22; content=&#x22;IE=edge&#x22;&#x3E;
+  &#x3C;meta name=&#x22;viewport&#x22; content=&#x22;width=device-width, initial-scale=1.0&#x22;&#x3E;
+  &#x3C;title&#x3E;Document&#x3C;/title&#x3E;
+  &#x3C;link rel=&#x22;stylesheet&#x22; media=&#x22;screen&#x22; href=&#x22;css/style.css&#x22;/&#x3E;
+&#x3C;/head&#x3E;
+&#x3C;body&#x3E;
+  &#x3C;div class=&#x22;content&#x22; id=&#x22;div1&#x22;&#x3E;
+      &#x3C;img id=&#x22;image-jh&#x22; src=&#x22;images/jimi-hendrix.jpg&#x22;&#x3E;
+  &#x3C;/div&#x3E;
+  &#x3C;script src=&#x22;https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@<%= config.version %>/dist/pict2pix.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+  &#x3C;script src=&#x22;js/app.js&#x22;&#x3E;&#x3C;/script&#x3E;
+&#x3C;/body&#x3E;
+&#x3C;/html&#x3E;
+            </code></pre>
+          </div>
+          <div class="col">
+            <div class="col">Javascript (app.js)</div>
+            <pre><code class="javascript">
+const image = document.getElementById('image-jh');
+window.onload = function initialize() {
+  pict2pix.animate({
+      image: image,
+      numberOfParticles: 800,
+      horizontalSpeed: 1,
+      verticalSpeed: -1,
+      particleType: 'twisted-particle'
+  });
+}
+
+
+
+
+
+
+
+            </code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>

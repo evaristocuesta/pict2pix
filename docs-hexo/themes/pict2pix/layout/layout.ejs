@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Pict2Pix.js is a creative coding library to apply fancy pixel animations to images.">
+    <meta name="description" content="Pict2Pix.js is a creative coding javascript library to apply fancy pixel animations to images">
     <meta name="author" content="Evaristo Cuesta">
-    <title>Pict2Pix.js - Led Matrix</title>
-    <link rel="canonical" href="https://evaristocuesta.github.io/pict2pix/led-matrix.html">
+    <title><%= config.title %><% if (page.title){ %> | <%= page.title %><% } %></title>
+    <link rel="canonical" href="<% if (page.permalink){ %><%= page.permalink %><% } else {%><%= config.url%><% }%>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.2.0/styles/a11y-dark.css">
-    <link rel="stylesheet" media="screen" href="css/style.css?v=0.4.0"/>
+    <link rel="stylesheet" media="screen" href="<%= url_for('/css/style.css?v=') %><%= config.version %>"/>
 
     <meta name="theme-color" content="#7952b3">
 
@@ -19,24 +19,25 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Pict2Pix.js</a>
+          <a class="navbar-brand" href="<%= url_for('/') %>">Pict2Pix.js</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav pt-2 py-md-0">
               <li class="nav-item col-6 col-md-auto">
-                <a class="nav-link active" aria-current="page" href="index.html#get_started">Get Started</a>
+                <a class="nav-link active" aria-current="page" href="/#get_started">Get Started</a>
               </li>
               <li class="nav-item col-6 col-md-auto dropdown">
                 <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Effects
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="twisted-particles.html">Twisted Particles</a></li>
-                  <li><a class="dropdown-item" href="straight-particles.html">Straight Particles</a></li>
-                  <li><a class="dropdown-item" href="led-matrix.html">Led Matrix</a></li>
-                  <li><a class="dropdown-item" href="halftone.html">Halftone</a></li>
+                  <% site.pages.forEach(function(page) { %>
+                    <% if (page.menu) { %>
+                      <li><a class="dropdown-item" href="<%- url_for(page.path) %>"><%- page.menu %></a></li>
+                    <% } %>
+                  <% }) %>
                 </ul>
               </li>
             </ul>
@@ -66,88 +67,7 @@
       </nav>
     </header>
 
-    <main>
-
-      <section class="py-2 text-center container">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Led Matrix Effect</h1>
-          </div>
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-          <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
-            <div class="col"></div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <img id="image-jh" src="images/jimi-hendrix.jpg" alt="Pict2Pix.js library">
-                <div class="card-body">
-                  <h5 class="card-text">Led Matrix Effect</h5>
-                  <div class="d-flex justify-content-between align-items-center">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col"></div>
-          </div>
-        </div>
-      </div>
-      
-      <section class="get-started bg-light py-2">
-        <div class="container">
-          <div class="row">
-            <div>
-              <h3 class="fw-light">Setting up Led Matrix Effect</h3>
-            </div>
-          </div>
-          <div class="row py-2">
-            <div>
-              <ul>
-                <li>
-                  <div>Get the image element and call to pict2pix.animate function</div>
-                  <div>
-                    <pre><code class="javascript">const imagejh = document.getElementById('image-jh');
-
-window.onload = function initialize() {
-    pict2pix.animate({
-        image: imagejh,
-        particleType: 'led-matrix',
-        type: 'random',
-        transitionTime: 2000,
-        idleTime: 3000,
-        ledSize: 4
-    });
-}</code></pre>
-                  </div>
-                </li>
-                <li>
-                  <div>Options</div>
-                  <ul>
-                    <li><b>image</b>: Required. The html element to apply the effect</li>
-                    <li><b>particleType</b>: Required. The effect to apply to the image. In this case is 'led-matrix'</li>
-                    <li>
-                    <b>type</b>: Optional. Transition effect type. Default value is random. 
-                      <ul>
-                        <li>random</li>
-                        <li>point</li>
-                        <li>horizontal</li>
-                        <li>vertical</li>
-                      </ul>
-                    </li>
-                    <li><b>ledSize</b>: Optional. Led size. Must be greater than 4. Default value 4.</li>
-                    <li><b>transitionTime</b>: Optional. Trasitions time in ms. Default value 2000.</li>
-                    <li><b>idleTime</b>: Optional. Idle time in ms. Default value 5000.</li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+    <%- body %>
 
     <footer class="text-muted py-5">
       <div class="container">
@@ -160,11 +80,11 @@ window.onload = function initialize() {
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@0.4.0/dist/pict2pix.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/evaristocuesta/pict2pix@<%= config.version %>/dist/pict2pix.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/languages/javascript.min.js"></script>
-    <script src="js/app.js?v=0.4.0"></script>
-    <script src="js/led-matrix.js?v=0.4.0"></script>
+    <script src="<%= url_for('/js/app.js?v=') %><%= config.version %>"></script>
+    <script src="js/index.js?v=<%= config.version %>'"></script>
       
   </body>
 </html>
